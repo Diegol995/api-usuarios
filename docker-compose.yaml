@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: symfony_api
+    container_name: api-usuarios
     ports:
       - "9090:80"
     volumes:
