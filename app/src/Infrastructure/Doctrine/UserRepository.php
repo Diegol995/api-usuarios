@@ -8,9 +8,9 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class UserRepository implements UserRepositoryInterface
 {
-    public function __construct(private EntityManagerInterface $em)
-    {
-    }
+    public function __construct(
+        private EntityManagerInterface $em
+    ) {}
 
     public function save(User $user): void
     {
@@ -21,16 +21,5 @@ class UserRepository implements UserRepositoryInterface
     public function findAll(): array
     {
         return $this->em->getRepository(User::class)->findAll();
-    }
-
-    public function findById(int $id): ?User
-    {
-        return $this->em->getRepository(User::class)->find($id);
-    }
-
-    public function delete(User $user): void
-    {
-        $this->em->remove($user);
-        $this->em->flush();
     }
 }
