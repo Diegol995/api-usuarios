@@ -1,28 +1,20 @@
 services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
     App\:
         resource: '../src/'
         exclude:
             - '../src/Kernel.php'
             - '../src/Domain/Entity/'
             - '../src/Application/DTO/'
-    
-    App\Application\UseCase\:
-        resource: '../src/Application/UseCase/'
-        autowire: true
-        autoconfigure: true
-        public: true
 
+    # Controladores
     App\Infrastructure\Controller\:
         resource: '../src/Infrastructure/Controller/'
         tags: ['controller.service_arguments']
 
-    # Bind de interfaz → implementación
+    # Bind interface → implementation
     App\Domain\Repository\UserRepositoryInterface:
         alias: App\Infrastructure\Doctrine\UserRepository
-
-    App\Infrastructure\Doctrine\UserRepository:
-        autowire: true
-        autoconfigure: true
-        public: true
-        arguments:
-            - '@doctrine.orm.entity_manager'
